@@ -15,9 +15,10 @@ $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
-$router->get('/api/start', function () {
-    // this is a api endpoint demo, you should create a controller for your endpoint
-    return [
-        'message' => 'All requests with api prefix will go to backend'
-    ];
+
+$router->group(['prefix' => 'api'], function () use ($router) {
+    $router->get('books',  ['uses' => 'BookController@getAll']);
+    $router->post('books', ['uses' => 'BookController@create']);
+    $router->delete('books/{id}', ['uses' => 'BookController@delete']);
+    $router->put('books/{id}', ['uses' => 'BookController@markAsSoldOrNot']);
 });
