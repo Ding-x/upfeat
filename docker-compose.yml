@@ -46,6 +46,8 @@ services:
       - upnet
     volumes:
       - ./frontend:/app
+    environment:
+      - CHOKIDAR_USEPOLLING=true
 
 networks:
   upnet:

@@ -1,18 +1,19 @@
 <template>
-  <div class="text-center">
-    <img alt="Vue logo" src="../assets/logo.webp" />
-    <books v-bind:books="this.books" />
+  <div>
+    <BookDetail
+      v-bind:book="this.books.filter(b => b.id == this.$route.params.id)[0]"
+    />
   </div>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
-import Books from "@/components/Books.vue";
+import BookDetail from "@/components/BookDetail.vue";
 
 export default {
-  name: "home",
+  name: "book",
   components: {
-    Books
+    BookDetail
   },
   computed: {
     ...mapGetters({

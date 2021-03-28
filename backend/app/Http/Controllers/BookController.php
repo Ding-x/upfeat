@@ -30,7 +30,7 @@ class BookController extends BaseController
         $this->validate(
             $request,
             [
-                'title' => 'required|min:5|max:255',
+                'title' => 'required|min:1|max:255',
                 'author' => 'required|max:255',
                 'price' => 'required',
                 'quantity' => 'required',
