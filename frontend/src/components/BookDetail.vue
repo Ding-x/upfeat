@@ -15,7 +15,7 @@
             <b-media-aside>
               <b-img
                 blank-color="#ccc"
-                src="https://assets.entrepreneur.com/content/3x2/2000/20191219170611-GettyImages-1152794789.jpeg"
+                :src="imageUrl"
                 width="256"
                 height="256"
                 alt=""
@@ -42,6 +42,8 @@
 </template>
 
 <script>
+import { IMAGE_URL } from "@/assets/constant.js";
+
 export default {
   name: "BookDetail",
   props: {
@@ -49,6 +51,11 @@ export default {
       type: Object,
       default: null
     }
+  },
+  data() {
+    return {
+      imageUrl: IMAGE_URL
+    };
   },
   methods: {
     toHome() {

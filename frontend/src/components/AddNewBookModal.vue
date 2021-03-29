@@ -1,5 +1,5 @@
 <template>
-  <b-modal v-model="isAddBookModalVisible" hide-footer>
+  <b-modal v-model="addBookModalState" hide-footer>
     <template v-slot:modal-title class="title text-center">
       Add a new book
     </template>
@@ -140,6 +140,16 @@ export default {
     },
     toggleAlertModal() {
       this.isAlertModalVisible = !this.isAlertModalVisible;
+    }
+  },
+  computed: {
+    addBookModalState: {
+      get: function() {
+        return this.isAddBookModalVisible;
+      },
+      set: function() {
+        this.$emit("toggleAddBookModal");
+      }
     }
   }
 };

@@ -30,6 +30,7 @@ export default {
     onSubmit(evt) {
       evt.preventDefault();
       this.$emit("onConfirm");
+      this.$emit("toggleAlertModal");
     },
     onReset(evt) {
       evt.preventDefault();

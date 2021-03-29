@@ -1,14 +1,17 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import axios from "axios";
+import { BASE_URL } from "@/assets/constant.js";
 
-axios.defaults.baseURL = "http://localhost:8088";
+axios.defaults.baseURL = BASE_URL;
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    books: []
+    books: [],
+    isErrorAlertVisible: true,
+    errorMessage: ""
   },
   mutations: {
     GET_BOOKS(state, payload) {
@@ -27,6 +30,14 @@ export default new Vuex.Store({
         }
         return b;
       });
+    },
+    SHOW_ERROR_ALERT(state, errorMessage) {
+      state.isErrorAlertVisible = true;
+      state.errorMessage = errorMessage;
+    },
+    HIDE_ERROR_ALERT(state) {
+      state.isErrorAlertVisible = false;
+      state.errorMessage = "";
     }
   },
   actions: {
@@ -37,6 +48,7 @@ export default new Vuex.Store({
           commit("GET_BOOKS", response.data.data);
         })
         .catch(err => {
+          this.dispatch("showErrorAlert", "Fail to fetch books.");
           console.log(err);
         });
     },
@@ -47,6 +59,7 @@ export default new Vuex.Store({
           commit("ADD_BOOK", response.data.data);
         })
         .catch(err => {
+          this.dispatch("showErrorAlert", "Fail to add a new book.");
           console.log(err);
         });
     },
@@ -55,6 +68,7 @@ export default new Vuex.Store({
         .delete("/api/books/" + id)
         .then(commit("DELETE_BOOK", id))
         .catch(err => {
+          this.dispatch("showErrorAlert", "Fail to delete the book.");
           console.log(err);
         });
     },
@@ -63,11 +77,20 @@ export default new Vuex.Store({
         .put("/api/books/" + payload.id, { sold: payload.isSold })
         .then(commit("MARK_SOLD", payload))
         .catch(err => {
+          this.dispatch("showErrorAlert", "Fail to mark the book as sold.");
           console.log(err);
         });
+    },
+    showErrorAlert({ commit }, errorMessage) {
+      commit("SHOW_ERROR_ALERT", errorMessage);
+    },
+    hideErrorAlert({ commit }) {
+      commit("HIDE_ERROR_ALERT");
     }
   },
   getters: {
-    books: state => state.books
+    books: state => state.books,
+    isErrorAlertVisible: state => state.isErrorAlertVisible,
+    errorMessage: state => state.errorMessage
   }
 });

@@ -3,7 +3,7 @@
     <b-card
       no-body
       style="max-width: 20rem;"
-      img-src="https://assets.entrepreneur.com/content/3x2/2000/20191219170611-GettyImages-1152794789.jpeg"
+      :img-src="imageUrl"
       img-alt="Image"
       img-top
     >
@@ -57,6 +57,7 @@
 
 <script>
 import AlertModal from "@/components/AlertModal.vue";
+import { IMAGE_URL } from "@/assets/constant.js";
 
 export default {
   name: "BookCard",
@@ -71,6 +72,7 @@ export default {
   },
   data() {
     return {
+      imageUrl: IMAGE_URL,
       isAlertModalVisible: false,
       isSoldAlertVisible: false,
       message: "Are you sure to delete the book?"
