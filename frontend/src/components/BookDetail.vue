@@ -42,7 +42,7 @@
 </template>
 
 <script>
-import { IMAGE_URL } from "@/assets/constant.js";
+import { IMAGE_URL } from "@/constant.js";
 
 export default {
   name: "BookDetail",

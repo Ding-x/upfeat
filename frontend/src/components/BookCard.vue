@@ -57,7 +57,7 @@
 
 <script>
 import AlertModal from "@/components/AlertModal.vue";
-import { IMAGE_URL } from "@/assets/constant.js";
+import { IMAGE_URL } from "@/constant.js";
 
 export default {
   name: "BookCard",

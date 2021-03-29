@@ -1,7 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import axios from "axios";
-import { BASE_URL } from "@/assets/constant.js";
+import { BASE_URL } from "@/constant.js";
 
 axios.defaults.baseURL = BASE_URL;
 
